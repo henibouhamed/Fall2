@@ -1,0 +1,344 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 12 09:46:32 2022
+
+@author: ASUS
+"""
+import cv2
+import numpy
+#from scipy.stats import itemfreq
+from skimage.feature import local_binary_pattern
+imref = cv2.imread("D:\\img1\\722\\rgb\\rgbref_0000.png",0)
+for a in range(1,723):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\722\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   print(imdiff)
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit=hist
+      
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit=numpy.vstack([voit,hist])
+import pandas
+c=pandas.read_csv("D:\\img1\\722\\labels.csv", index_col=0,sep=',')
+d=c.to_numpy() 
+d=numpy.subtract(d,1)
+t=numpy.hstack((voit,d))
+imref = cv2.imread("D:\\img1\\569\\rgb\\rgb_0001.png",0)
+for a in range(1,571):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\569\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit4=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit4=numpy.vstack([voit4,hist])
+import pandas
+c4=pandas.read_csv("D:\\img1\\569\\labels.csv", index_col=0,sep=',')
+d4=c4.to_numpy() 
+d4=numpy.subtract(d4,1)
+t1=numpy.hstack((voit4,d4))
+imref = cv2.imread("D:\\img1\\581\\rgb\\rgbref_0000.png",0)
+for a in range(1,582):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\581\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit5=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit5=numpy.vstack([voit5,hist])
+import pandas
+c5=pandas.read_csv("D:\\img1\\581\\labels.csv", index_col=0,sep=',')
+d5=c5.to_numpy() 
+d5=numpy.subtract(d5,1)
+t2=numpy.hstack((voit5,d5))
+imref = cv2.imread("D:\\img1\\731\\rgb\\rgbref_0000.png",0)
+for a in range(1,732):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\731\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit6=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit6=numpy.vstack([voit6,hist])
+import pandas
+c6=pandas.read_csv("D:\\img1\\731\\labels.csv", index_col=0,sep=',')
+d6=c6.to_numpy() 
+d6=numpy.subtract(d6,1)
+t3=numpy.hstack((voit6,d6))
+imref = cv2.imread("D:\\img1\\758\\rgb\\rgb_0001.png",0)
+for a in range(1,759):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\758\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit7=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit7=numpy.vstack([voit7,hist])
+import pandas
+c7=pandas.read_csv("D:\\img1\\758\\labels.csv", index_col=0,sep=',')
+d7=c7.to_numpy() 
+d7=numpy.subtract(d7,1)
+t4=numpy.hstack((voit7,d7))
+imref = cv2.imread("D:\\img1\\807\\rgb\\rgbref_0000.png",0)
+for a in range(1,808):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\807\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit8=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit8=numpy.vstack([voit8,hist])
+import pandas
+c8=pandas.read_csv("D:\\img1\\807\\labels.csv", index_col=0,sep=',')
+d8=c8.to_numpy() 
+d8=numpy.subtract(d8,1)
+t5=numpy.hstack((voit8,d8))
+imref = cv2.imread("D:\\img1\\1260\\rgb\\rgbref_0000.png",0)
+for a in range(1,1261):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\1260\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit10=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit10=numpy.vstack([voit10,hist])
+import pandas
+c10=pandas.read_csv("D:\\img1\\1260\\labels.csv", index_col=0,sep=',')
+d10=c10.to_numpy() 
+d10=numpy.subtract(d10,1)
+t6=numpy.hstack((voit10,d10))
+imref = cv2.imread("D:\\img1\\1378\\rgb\\rgb_0001.png",0)
+for a in range(1,1379):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\1378\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit11=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit11=numpy.vstack([voit11,hist])
+import pandas
+c11=pandas.read_csv("D:\\img1\\1378\\labels.csv", index_col=0,sep=',')
+d11=c11.to_numpy() 
+d11=numpy.subtract(d11,1)
+t7=numpy.hstack((voit11,d11))
+imref = cv2.imread("D:\\img1\\1843\\rgb\\rgbref_0000.png",0)
+for a in range(1,1844):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\1843\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit12=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit12=numpy.vstack([voit12,hist])
+import pandas
+c12=pandas.read_csv("D:\\img1\\1843\\labels.csv", index_col=0,sep=',')
+d12=c12.to_numpy() 
+d12=numpy.subtract(d12,1)
+t8=numpy.hstack((voit12,d12))
+imref = cv2.imread("D:\\img1\\1954\\rgb\\rgb_0001.png",0)
+for a in range(1,1955):
+   b=str(a)
+   b=b.zfill(4)
+   st="D:\\img1\\1954\\rgb\\"+"rgb_"+b+".png"
+   print(st)
+   im = cv2.imread(st,0)
+   imdiff=abs(cv2.subtract(imref,im))
+   lbp = local_binary_pattern(imdiff, 8, 1,method='nri_uniform')
+   (hist, _) = numpy.histogram(lbp.ravel(),bins=numpy.arange(60))
+   hist = hist.astype("float")
+   hist /= (hist.sum())
+   
+   lbp2 = local_binary_pattern(imdiff, 8, 2,method='nri_uniform')
+   (hist2, _) = numpy.histogram(lbp2.ravel(),bins=numpy.arange(60))
+   hist2 = hist2.astype("float")
+   hist2 /= (hist2.sum())
+   
+   lbp3 = local_binary_pattern(imdiff, 8, 3,method='nri_uniform')
+   (hist3, _) = numpy.histogram(lbp3.ravel(),bins=numpy.arange(60))
+   hist3 = hist3.astype("float")
+   hist3 /= (hist3.sum())
+   if a == 1:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit13=hist
+   else:
+       hist=numpy.hstack([hist,hist2,hist3])
+       voit13=numpy.vstack([voit13,hist])
+import pandas
+c13=pandas.read_csv("D:\\img1\\1954\\labels.csv", index_col=0,sep=',')
+d13=c13.to_numpy() 
+d13=numpy.subtract(d13,1)
+t9=numpy.hstack((voit13,d13))
+data177=numpy.concatenate((t,t1,t2,t3,t4,t5,t6,t7,t8,t9),axis=0)
