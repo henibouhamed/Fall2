@@ -1,0 +1,57 @@
+#load and prepare data
+df = spark.read.load("/data/data12092022n.csv", format="csv", sep=",",inferSchema="true")
+from pyspark.ml.feature import VectorAssembler
+vectorAssembler=VectorAssembler(inputCols=['_c0', '_c1', '_c2', '_c3', '_c4', '_c5', '_c6', '_c7', '_c8', '_c9', '_c10', '_c11', '_c12', '_c13', '_c14', '_c15', '_c16', '_c17', '_c18', '_c19', '_c20', '_c21', '_c22', '_c23', '_c24', '_c25', '_c26', '_c27', '_c28', '_c29', '_c30', '_c31', '_c32', '_c33', '_c34', '_c35', '_c36', '_c37', '_c38', '_c39', '_c40', '_c41', '_c42', '_c43', '_c44', '_c45', '_c46', '_c47', '_c48', '_c49', '_c50', '_c51', '_c52', '_c53', '_c54', '_c55', '_c56', '_c57', '_c58', '_c59', '_c60', '_c61', '_c62', '_c63', '_c64', '_c65', '_c66', '_c67', '_c68', '_c69', '_c70', '_c71', '_c72', '_c73', '_c74', '_c75', '_c76', '_c77', '_c78', '_c79', '_c80', '_c81', '_c82', '_c83', '_c84', '_c85', '_c86', '_c87', '_c88', '_c89', '_c90', '_c91', '_c92', '_c93', '_c94', '_c95', '_c96', '_c97', '_c98', '_c99', '_c100', '_c101', '_c102', '_c103', '_c104', '_c105', '_c106', '_c107', '_c108', '_c109', '_c110', '_c111', '_c112', '_c113', '_c114', '_c115', '_c116', '_c117', '_c118', '_c119', '_c120', '_c121', '_c122', '_c123', '_c124', '_c125', '_c126', '_c127', '_c128', '_c129', '_c130', '_c131', '_c132', '_c133', '_c134', '_c135', '_c136', '_c137', '_c138', '_c139', '_c140', '_c141', '_c142', '_c143', '_c144', '_c145', '_c146', '_c147', '_c148', '_c149', '_c150', '_c151', '_c152', '_c153', '_c154', '_c155', '_c156', '_c157', '_c158', '_c159', '_c160', '_c161', '_c162', '_c163', '_c164', '_c165', '_c166', '_c167', '_c168', '_c169', '_c170', '_c171', '_c172', '_c173', '_c174', '_c175', '_c176'], outputCol="features")
+data = vectorAssembler.transform(df)
+trainingData, testData = data.randomSplit([0.9, 0.1])
+
+#Random Forest
+from pyspark.ml.classification import RandomForestClassifier
+rf = RandomForestClassifier(labelCol="_c177",featuresCol="features",maxDepth=20,numTrees=25)
+model = rf.fit(trainingData)
+classifications = model.transform(testData)
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+evaluator = MulticlassClassificationEvaluator(labelCol="_c177", predictionCol="prediction", metricName="accuracy")
+accuracy = evaluator.evaluate(classifications)
+
+#Decision Tree
+from pyspark.ml.classification import DecisionTreeClassifier
+ab = DecisionTreeClassifier(labelCol="_c177",featuresCol="features",maxDepth=30,maxBins=45)
+model = ab.fit(trainingData)
+classifications = model.transform(testData)
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+evaluator = MulticlassClassificationEvaluator(labelCol="_c177", predictionCol="prediction", metricName="accuracy")
+accuracy = evaluator.evaluate(classifications)
+
+#Logistic Regression
+from pyspark.ml.classification import LogisticRegression
+lr = LogisticRegression(labelCol="_c177",featuresCol="features")
+model = lr.fit(trainingData)
+classifications = model.transform(testData)
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+evaluator = MulticlassClassificationEvaluator(labelCol="_c177", predictionCol="prediction", metricName="accuracy")
+accuracy = evaluator.evaluate(classifications)
+
+#Naive Bayes
+from pyspark.ml.classification import NaiveBayes
+nb = NaiveBayes(labelCol="_c177",featuresCol="features",modelType="multinomial",smoothing=1.0)
+model = nb.fit(trainingData)
+classifications = model.transform(testData)
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+evaluator = MulticlassClassificationEvaluator(labelCol="_c177", predictionCol="prediction", metricName="accuracy")
+accuracy = evaluator.evaluate(classifications)
+
+#Neural network
+from pyspark.ml.classification import MultilayerPerceptronClassifier
+nn = MultilayerPerceptronClassifier(labelCol="_c177",featuresCol="features",layers=[177,10,10,6],blockSize=1000,seed=1234,maxIter=1000,solver='gd')
+model = nn.fit(trainingData)
+classifications = model.transform(testData)
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+evaluator = MulticlassClassificationEvaluator(labelCol="_c177", predictionCol="prediction", metricName="accuracy")
+accuracy = evaluator.evaluate(classifications)
+nn = MultilayerPerceptronClassifier(labelCol="_c177",featuresCol="features",layers=[177,500,500,6],blockSize=1000,seed=1234,maxIter=1000)
+model = nn.fit(trainingData)
+classifications = model.transform(testData)
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+evaluator = MulticlassClassificationEvaluator(labelCol="_c177", predictionCol="prediction", metricName="accuracy")
+accuracy = evaluator.evaluate(classifications)
